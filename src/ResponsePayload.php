@@ -16,7 +16,7 @@ namespace App;
 class ResponsePayload {
 
     protected $structure = [
-        'data' => null,
+        'data' => [],
         'status' => '',
         'message' => ''
     ];
@@ -119,7 +119,7 @@ class ResponsePayload {
 
     public function getPayloadDataSize() {
 
-        if($this->payload['data'] === false || $this->payload['data'] == null) {
+        if($this->payload['data'][0] === false || $this->payload['data'][0] == null) {
 
             return false;
         } else {

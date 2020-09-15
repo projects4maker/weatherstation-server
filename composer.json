@@ -1,4 +1,6 @@
 {
+    "name":"projects4maker/weatherstation-server",
+    "description":"Awesome project!",
     "require": {
         "slim/slim": "^4.3",
         "slim/psr7": "^0.6.0"
