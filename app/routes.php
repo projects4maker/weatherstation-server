@@ -14,12 +14,12 @@ use App\WeatherStationService;
 use Slim\Interfaces\RouteCollectorProxyInterface as GroupInterface;
 
 //Main /api group
-$app->group('/api', function (GroupInterface $group){
+$app->group(WeatherStationService::get('sub_path') . '/api', function (GroupInterface $group){
 
     //Redirect to the dash controller
     $group->any('/', function ($request, $response, $args) {
         return $response
-                ->withHeader('Location', '/')
+                ->withHeader('Location', WeatherStationService::get('sub_path'))
                 ->withStatus(302);
     });
 
@@ -42,4 +42,4 @@ $app->group('/api', function (GroupInterface $group){
 });
 
 //Dash router
-$app->get('/', DashController::class . ':response');
+$app->get(WeatherStationService::get('sub_path'), DashController::class . ':response');
