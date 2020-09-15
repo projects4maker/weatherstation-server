@@ -1,0 +1,20 @@
+#!/usr/bin/php
+<?php
+/**
+ * raah @ projects4maker.com
+ * 
+ * Weatherstation project server source
+ * 
+ * @see projects4maker.com/weatherstation
+ */
+
+require __DIR__ . '/vendor/autoload.php';
+
+use App\Helper\RunFirstTime;
+use App\WeatherStationService;
+
+//Start App
+WeatherStationService::start();
+
+$install = new RunFirstTime();
+$install->doInstall();
