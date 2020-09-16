@@ -2,6 +2,7 @@
     "name":"projects4maker/weatherstation-server",
     "description":"Awesome project!",
     "require": {
+        "php": "^7.2",
         "slim/slim": "^4.3",
         "slim/psr7": "^0.6.0"
     },
