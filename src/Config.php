@@ -41,9 +41,9 @@ class Config {
         //Solve issue if the sub_path is empty OR "/"
         if(isset(self::$config['sub_path'])) {
 
-            if(substr(self::$config['sub_path'], -1) == '/') {
+            if(substr(self::$config['sub_path'], -1) != '/') {
 
-                self::$config['sub_path'] = substr(self::$config['sub_path'], 0, -1);
+                self::$config['sub_path'] .= '/';
             }
         }
 

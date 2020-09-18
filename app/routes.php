@@ -14,7 +14,7 @@ use App\WeatherStationService;
 use Slim\Interfaces\RouteCollectorProxyInterface as GroupInterface;
 
 //Main /api group
-$app->group(WeatherStationService::get('sub_path') . '/api', function (GroupInterface $group){
+$app->group(WeatherStationService::get('sub_path') . 'api', function (GroupInterface $group){
 
     //Redirect to the dash controller
     $group->any('/', function ($request, $response, $args) {
