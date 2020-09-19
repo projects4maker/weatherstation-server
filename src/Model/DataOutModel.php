@@ -78,7 +78,7 @@ class DataOutModel {
         }
 
         $sql = 'SELECT humidity, pressure, temperature, draw_time FROM %dbname%.weather_storage WHERE draw_time BETWEEN "' . $startDate . 
-        ' 00:00:00" AND "' . $endDate . ' 23:59:59" ORDER BY entry_id DESC';
+        '" AND "' . $endDate . '" ORDER BY entry_id DESC';
 
         $statement = $this->pdo->query(
             str_replace('%dbname%', WeatherStationService::get('dbname'), $sql)

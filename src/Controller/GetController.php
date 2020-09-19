@@ -97,7 +97,9 @@ class GetController {
                         $parts[2] > 0 && $parts[2] <= 31) {
 
                         $model = new DataOutModel();
-                        $this->payload->setData($model->readDatabaseEntitiesByDateRange($date, $date));
+                        $this->payload->setData(
+                            $model->readDatabaseEntitiesByDateRange($date . '00:00:00', $date . '23:59:59')
+                        );
                     } else {
 
                         $this->payload->applyError('Value date is not the correct format: ' . $date);
