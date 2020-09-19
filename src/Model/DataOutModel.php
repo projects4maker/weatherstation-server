@@ -69,4 +69,21 @@ class DataOutModel {
         
         return $statement->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function readDatabaseEntitiesByDateRange($startDate, $endDate) {
+
+        if($startDate == '' || $endDate == '') {
+
+            return; 
+        }
+
+        $sql = 'SELECT humidity, pressure, temperature, draw_time FROM %dbname%.weather_storage WHERE draw_time BETWEEN "' . $startDate . 
+        ' 00:00:00" AND "' . $endDate . ' 23:59:59" ORDER BY entry_id DESC';
+
+        $statement = $this->pdo->query(
+            str_replace('%dbname%', WeatherStationService::get('dbname'), $sql)
+        );
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

@@ -45,6 +45,7 @@ class GetController {
                 $model = new DataOutModel();
                 $this->payload->setData([0 => $model->readDatabaseEntitieLastValue()]);
             }
+
             /**
              * casing return limited values
              * with limit=?
@@ -62,6 +63,7 @@ class GetController {
                         $this->payload->applyError('Value limit is not between 0 and 999: ' . $limit);
                     }
             }
+
             /**
              * casing retun by the entry_id
              */
@@ -79,6 +81,28 @@ class GetController {
                         $this->payload->applyError('Value id has to be type of numeric: ' . $id);
                     }
             }
+            
+            /**
+             * casing retun by the date
+             */
+            elseif(count($this->data) == 2 &&
+                isset($this->data['date'])) {
+
+                    $date = $this->data['date'];    
+                    
+                    $parts = explode('-', $date);
+
+                    if($parts[0] > 0 && $parts[0] < 3000 &&
+                        $parts[1] > 0 && $parts[1] <= 12 &&
+                        $parts[2] > 0 && $parts[2] <= 31) {
+
+                        $model = new DataOutModel();
+                        $this->payload->setData($model->readDatabaseEntitiesByDateRange($date, $date));
+                    } else {
+
+                        $this->payload->applyError('Value date is not the correct format: ' . $date);
+                    }
+            }
 
             if(!$this->payload->getPayloadDataSize()) {
             
@@ -86,7 +110,6 @@ class GetController {
             }
         }
 
-        //TODO: Add get by date
         //TODO: Add get by date, periode of time
         //TODO: Add get by parameter values like humidity, with hight and low limit
 

@@ -7,10 +7,6 @@
  * @see projects4maker.com/weatherstation
  */
 
-//TODO Implemet payload
-//TODO with if error and if status ok
-//TODO with json return
-
 namespace App;
 
 class ResponsePayload {
@@ -119,12 +115,19 @@ class ResponsePayload {
 
     public function getPayloadDataSize() {
 
-        if($this->payload['data'][0] === false || $this->payload['data'][0] == null) {
+        if(isset($this->payload['data'][0])) {
 
-            return false;
+            if($this->payload['data'][0] === false || 
+            $this->payload['data'][0] == null) {
+
+                return false;
+            } else {
+
+                return true;
+            }
         } else {
 
-            return true;
+            return false;
         }
     }
 }
