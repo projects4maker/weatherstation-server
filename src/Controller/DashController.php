@@ -13,15 +13,19 @@ class DashController {
 
     public function __constructor(){}
 
-    public function response($request, $response, $args){
+    public function dashboard($request, $response, $args){
 
-        $content = file_get_contents(__DIR__ . '/../../app/views/dashboard.php');
+        $content = file_get_contents(__DIR__ . '/../../app/views/dashboard.html');
 
         $response->getBody()->write(
             $content
         );
         return $response;
 
+    }
+
+    private function makePublicAuth() {
+        
     }
 
 }

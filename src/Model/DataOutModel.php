@@ -78,7 +78,58 @@ class DataOutModel {
         }
 
         $sql = 'SELECT humidity, pressure, temperature, draw_time FROM %dbname%.weather_storage WHERE draw_time BETWEEN "' . $startDate . 
-        '" AND "' . $endDate . '" ORDER BY entry_id DESC';
+        '" AND "' . $endDate . '" ORDER BY entry_id ASC';
+
+        $statement = $this->pdo->query(
+            str_replace('%dbname%', WeatherStationService::get('dbname'), $sql)
+        );
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function readDatabaseEntitiesByHumidityRange($rangeDown, $rangeTop) {
+
+        if($rangeDown == 0 || $rangeTop == 0) {
+
+            return; 
+        }
+
+        $sql = 'SELECT humidity, pressure, temperature, draw_time FROM %dbname%.weather_storage WHERE humidity BETWEEN "' . $rangeDown . 
+        '" AND "' . $rangeTop . '" ORDER BY humidity ASC';
+
+        $statement = $this->pdo->query(
+            str_replace('%dbname%', WeatherStationService::get('dbname'), $sql)
+        );
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function readDatabaseEntitiesByPressureRange($rangeDown, $rangeTop) {
+
+        if($rangeDown == 0 || $rangeTop == 0) {
+
+            return; 
+        }
+
+        $sql = 'SELECT humidity, pressure, temperature, draw_time FROM %dbname%.weather_storage WHERE pressure BETWEEN "' . $rangeDown . 
+        '" AND "' . $rangeTop . '" ORDER BY pressure ASC';
+
+        $statement = $this->pdo->query(
+            str_replace('%dbname%', WeatherStationService::get('dbname'), $sql)
+        );
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function readDatabaseEntitiesByTemperatureRange($rangeDown, $rangeTop) {
+
+        if($rangeDown == 0 || $rangeTop == 0) {
+
+            return; 
+        }
+
+        $sql = 'SELECT humidity, pressure, temperature, draw_time FROM %dbname%.weather_storage WHERE temperature BETWEEN "' . $rangeDown . 
+        '" AND "' . $rangeTop . '" ORDER BY temperature ASC';
 
         $statement = $this->pdo->query(
             str_replace('%dbname%', WeatherStationService::get('dbname'), $sql)

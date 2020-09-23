@@ -19,7 +19,7 @@ $app->group(WeatherStationService::get('sub_path') . 'api', function (GroupInter
     //Redirect to the dash controller
     $group->any('/', function ($request, $response, $args) {
         return $response
-                ->withHeader('Location', WeatherStationService::get('sub_path'))
+                ->withHeader('Location', WeatherStationService::get('sub_path') . 'dashboard')
                 ->withStatus(302);
     });
 
@@ -41,5 +41,11 @@ $app->group(WeatherStationService::get('sub_path') . 'api', function (GroupInter
 
 });
 
-//Dash router
-$app->get(WeatherStationService::get('sub_path'), DashController::class . ':response');
+//Main /api group
+$app->group(WeatherStationService::get('sub_path'), function (GroupInterface $group){
+
+    $group->get('/login', DashController::class . ':login');
+
+    $group->get('/dashboard', DashController::class . ':dashboard');
+
+});

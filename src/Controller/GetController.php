@@ -89,16 +89,12 @@ class GetController {
                 isset($this->data['date'])) {
 
                     $date = $this->data['date'];    
-                    
-                    $parts = explode('-', $date);
-
-                    if($parts[0] > 0 && $parts[0] < 3000 &&
-                        $parts[1] > 0 && $parts[1] <= 12 &&
-                        $parts[2] > 0 && $parts[2] <= 31) {
+                
+                    if(strtotime($date) != false) {
 
                         $model = new DataOutModel();
                         $this->payload->setData(
-                            $model->readDatabaseEntitiesByDateRange($date . '00:00:00', $date . '23:59:59')
+                            $model->readDatabaseEntitiesByDateRange($date . ' 00:00:00', $date . ' 23:59:59')
                         );
                     } else {
 
@@ -106,14 +102,138 @@ class GetController {
                     }
             }
 
+            /**
+             * casing retun by the date, periode of time
+             */
+            elseif(count($this->data) == 3 &&
+                isset($this->data['sdate']) &&
+                isset($this->data['edate'])) {
+
+
+                    $startDate = $this->data['sdate'];
+                    $endDate = $this->data['edate'];    
+                    
+
+                    if(strtotime($startDate) != false &&
+                    strtotime($endDate) != false) {
+
+                        if(strtotime($startDate) >= strtotime($endDate)) {
+
+                            $this->payload->applyError('End date musste be after start date.');
+                        } else {
+
+                            $model = new DataOutModel();
+                            $this->payload->setData(
+                                $model->readDatabaseEntitiesByDateRange($startDate . ' 00:00:00', $endDate . ' 23:59:59')
+                            );
+                        }
+                    } else {
+
+                        $this->payload->applyError('Value date is not the correct format: ' . $startDate . ' / ' . $endDate);
+                    }
+            }
+
+            /**
+             * casing return by hum, with range
+             */
+            elseif(count($this->data) == 2 || 
+                count($this->data) == 3 &&
+                isset($this->data['humidity'])) {
+
+                    $humidity = $this->data['humidity'];
+
+                    if(isset($this->data['range'])) {
+
+                        if(!is_numeric($this->data['range'])) {
+
+                            $this->payload->applyError('Range parameter musst be a numeric val.: ' . $this->data['range']);
+                        }
+
+                        $offset = $this->data['range']/2;
+
+                        $rangeDown = $humidity - $offset;
+                        $rangeTop = $humidity + $offset;
+                    } else {
+
+                        $rangeDown = $humidity;
+                        $rangeTop = $humidity;
+                    }
+
+                    $model = new DataOutModel();
+                    $this->payload->setData(
+                        $model->readDatabaseEntitiesByHumidityRange($rangeDown, $rangeTop)
+                    );
+            }
+
+            /**
+             * casing return by pressure, with range
+             */
+            elseif(count($this->data) == 2 || 
+                count($this->data) == 3 &&
+                isset($this->data['pressure'])) {
+
+                    $pressure = $this->data['pressure'];
+
+                    if(isset($this->data['range'])) {
+
+                        if(!is_numeric($this->data['range'])) {
+
+                            $this->payload->applyError('Range parameter musst be a numeric val.: ' . $this->data['range']);
+                        }
+
+                        $offset = $this->data['range']/2;
+
+                        $rangeDown = $pressure - $offset;
+                        $rangeTop = $pressure + $offset;
+                    } else {
+
+                        $rangeDown = $pressure;
+                        $rangeTop = $pressure;
+                    }
+
+                    $model = new DataOutModel();
+                    $this->payload->setData(
+                        $model->readDatabaseEntitiesByPressureRange($rangeDown, $rangeTop)
+                    );
+            }
+
+            /**
+             * casing return by temperature, with range
+             */
+            elseif(count($this->data) == 2 || 
+                count($this->data) == 3 &&
+                isset($this->data['temperature'])) {
+
+                    $temperature = $this->data['temperature'];
+
+                    if(isset($this->data['range'])) {
+
+                        if(!is_numeric($this->data['range'])) {
+
+                            $this->payload->applyError('Range parameter musst be a numeric val.: ' . $this->data['range']);
+                        }
+
+                        $offset = $this->data['range']/2;
+
+                        $rangeDown = $temperature - $offset;
+                        $rangeTop = $temperature + $offset;
+                    } else {
+
+                        $rangeDown = $temperature;
+                        $rangeTop = $temperature;
+                    }
+
+                    $model = new DataOutModel();
+                    $this->payload->setData(
+                        $model->readDatabaseEntitiesByTemperatureRange($rangeDown, $rangeTop)
+                    );
+            }
+
             if(!$this->payload->getPayloadDataSize()) {
             
                 $this->payload->applyError('Empty database or there is no entry with this selection.');
             }
         }
-
-        //TODO: Add get by date, periode of time
-        //TODO: Add get by parameter values like humidity, with hight and low limit
 
         $response->getBody()->write($this->payload->jsonResponse());
         return $response->withHeader('Content-Type', 'application/json')
