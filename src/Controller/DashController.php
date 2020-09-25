@@ -11,11 +11,22 @@ namespace App\Controller;
 
 class DashController {
 
-    public function __constructor(){}
+    public function __construct(){}
+
+    public function login($request, $response, $args){
+
+        $content = file_get_contents(__DIR__ . '/../../app/views/login.html');
+
+        $response->getBody()->write(
+            $content
+        );
+        return $response;
+
+    }
 
     public function dashboard($request, $response, $args){
 
-        $content = file_get_contents(__DIR__ . '/../../app/views/dashboard.html');
+        $content = file_get_contents(__DIR__ . '/../../app/views/dash.html');
 
         $response->getBody()->write(
             $content
@@ -25,7 +36,7 @@ class DashController {
     }
 
     private function makePublicAuth() {
-        
+
     }
 
 }

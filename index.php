@@ -13,11 +13,7 @@ use App\WeatherStationService;
 use App\Controller\ErrorController;
 use Slim\Factory\AppFactory;
 
-
-$settings = require __DIR__ . '/app/settings.php';
-
 $app = AppFactory::create();
-
 
 $app->addRoutingMiddleware();
 
@@ -30,7 +26,6 @@ $errorMiddleware->setDefaultErrorHandler(function($request, $exception) use ($ap
         $app->getResponseFactory()->createResponse(), 
         $exception);
 });
-
 
 WeatherStationService::start();
 
