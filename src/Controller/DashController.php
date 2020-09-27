@@ -9,24 +9,29 @@
 
 namespace App\Controller;
 
+use App\FileLoader;
+
 class DashController {
 
     public function __construct(){}
 
     public function login($request, $response, $args){
 
-        $content = file_get_contents(__DIR__ . '/../../app/views/login.html');
+        $file = new FileLoader(__DIR__ . '/../../app/views/login.php');
 
-        $response->getBody()->write(
-            $content
-        );
-        return $response;
+        $content = $file->include();
+
+        $response->getBody()->write($content);
+        return $response->withHeader('Content-Type', 'text/html')
+                        ->withStatus(200);
 
     }
 
     public function dashboard($request, $response, $args){
 
-        $content = file_get_contents(__DIR__ . '/../../app/views/dash.html');
+        $file = new FileLoader(__DIR__ . '/../../app/views/dashboard.php');
+
+        $content = $file->include();
 
         $response->getBody()->write(
             $content
