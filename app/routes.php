@@ -7,9 +7,10 @@
  * @see projects4maker.com/weatherstation
  */
 
-use App\Controller\GetController;
-use App\Controller\PostController;
-use App\Controller\DashController;
+use App\Controller\Api\GetController;
+use App\Controller\Api\PostController;
+use App\Controller\Dashboard\DashboardController;
+use App\Controller\Dashboard\LoginController;
 use App\WeatherStationService;
 use Slim\Interfaces\RouteCollectorProxyInterface as GroupInterface;
 
@@ -47,6 +48,6 @@ $app->any(WeatherStationService::get('sub_path'), function ($request, $response,
             ->withStatus(302);
 });
 
-$app->map(['GET', 'POST'], WeatherStationService::get('sub_path') . 'login', DashController::class . ':login');
+$app->map(['GET', 'POST'], WeatherStationService::get('sub_path') . 'login', LoginController::class . ':response');
 
-$app->get(WeatherStationService::get('sub_path') . 'dashboard', DashController::class . ':dashboard');
+$app->get(WeatherStationService::get('sub_path') . 'dashboard', DashboardController::class . ':response');

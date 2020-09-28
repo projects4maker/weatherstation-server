@@ -7,7 +7,7 @@
  * @see projects4maker.com/weatherstation
  */
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\WeatherStationService as Weatherstation; 
 use App\ResponsePayload as Payload; 
