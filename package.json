@@ -1,26 +1,9 @@
 {
-  "name": "weatherstation-server",
-  "version": "0.0.1",
-  "description": "Server part..",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build-sass": "sass --style=compressed app/assets/scss/index.scss dist/css/latest.min.css",
     "compile-js": "echo \"TEst "
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/projects4maker/weatherstation-server.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/projects4maker/weatherstation-server/issues"
-  },
-  "homepage": "https://github.com/projects4maker/weatherstation-server#readme",
   "dependencies": {
     "bootstrap": "^4.5.2",
     "bootswatch": "^4.5.2",

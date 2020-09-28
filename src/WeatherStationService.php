@@ -12,7 +12,7 @@ namespace App;
 use App\Db;
 
 class WeatherStationService extends Config {
-    
+
     static public function start() {
     
         self::loadConfig();
