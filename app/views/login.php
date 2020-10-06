@@ -1,6 +1,13 @@
 <?php
+/**
+ * raah @ projects4maker.com
+ * 
+ * Weatherstation project server source
+ * 
+ * @see projects4maker.com/weatherstation
+ */
+
 $root = App\WeatherStationService::get('sub_path');
-$isInvalid = false;
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,8 +32,7 @@ $isInvalid = false;
                           <div class="input-group-prepend">
                             <span class="input-group-text">Hash</span>
                           </div>
-                          <input name="login_hash" type="text" class="form-control <?php if($isInvalid) { echo("is-invalid");} ?> form-control-lg">
-                          <?php if($isInvalid) { echo("<div class=\"invalid-feedback\">Sorry, that hash is invalid.</div>");} ?>
+                          <input name="login_hash" type="text" class="form-control form-control-lg">
                         </div>
                       </div>
                     </div>

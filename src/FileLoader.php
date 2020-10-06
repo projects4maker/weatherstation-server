@@ -35,6 +35,5 @@ class FileLoader {
         ob_end_clean();
 
         return $content;
-        
     }
 }

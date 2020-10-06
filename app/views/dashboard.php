@@ -1,5 +1,14 @@
 <?php
+/**
+ * raah @ projects4maker.com
+ * 
+ * Weatherstation project server source
+ * 
+ * @see projects4maker.com/weatherstation
+ */
+
 $root = App\WeatherStationService::get('sub_path');
+$hash = App\WeatherStationService::get('weather_station_very_hash');
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,6 +18,12 @@ $root = App\WeatherStationService::get('sub_path');
         <link rel="stylesheet" href="<?=$root?>dist/css/latest.min.css">
         <link rel="icon" href="<?=$root?>dist/img/cloud_circle-24px.svg" type="image/x-icon">
         <script src="<?=$root?>dist/js/latest.min.js"></script>
+
+        <script>
+            var site = {
+                hash:"<?=$hash?>"
+            }
+        </script>
     </head>
     <body>
         <nav id="dashboard-head">

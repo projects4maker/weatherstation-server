@@ -39,7 +39,9 @@ class Db {
                 ';host=' . $host .
                 $port_string,
                 $user,
-                $password);
+                $password, [
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
+            ]);
                 
         } catch(\PDOException $e) {
 
