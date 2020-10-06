@@ -17,8 +17,7 @@ $root = App\WeatherStationService::get('sub_path');
         <link rel="stylesheet" href="<?=$root?>dist/css/latest.min.css">
         <link rel="icon" href="<?=$root?>dist/img/cloud_circle-24px.svg" type="image/x-icon">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="<?=$root?>dist/js/latest.min.js"></script>
-    </head>
+        </head>
     <body>
         <main id="logon-form">
             <form method="POST" action="<?=$root?>login">
@@ -43,5 +42,6 @@ $root = App\WeatherStationService::get('sub_path');
               </div>
             </form>
         </main>
+        <script src="<?=$root?>dist/js/latest.min.js"></script>
     </body>
 </html>
