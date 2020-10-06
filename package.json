@@ -1,14 +1,14 @@
 {
   "private": true,
   "scripts": {
-    "build-sass": "sass --style=compressed app/assets/scss/index.scss dist/css/latest.min.css",
-    "compile-js": "echo \"TEst "
+    "build-sass": "sass --style=compressed ./app/assets/scss/index.scss ./dist/css/latest.min.css",
+    "build-js": "terser ./app/assets/js/ajax.js --source-map --output ./dist/js/latest.min.js"
   },
   "dependencies": {
     "bootstrap": "^4.5.2",
     "bootswatch": "^4.5.2",
-    "jquery": "^3.5.1",
     "node-sass": "^4.14.1",
-    "sass": "^1.26.10"
+    "sass": "^1.26.10",
+    "terser": "^5.3.4"
   }
 }

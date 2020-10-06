@@ -17,6 +17,7 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
         <title>Dashboard | Weatherstation Dashboard</title>
         <link rel="stylesheet" href="<?=$root?>dist/css/latest.min.css">
         <link rel="icon" href="<?=$root?>dist/img/cloud_circle-24px.svg" type="image/x-icon">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="<?=$root?>dist/js/latest.min.js"></script>
 
         <script>
