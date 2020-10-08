@@ -14,7 +14,7 @@ use App\Db;
 
 class RunFirstTime {
 
-    protected $sqlfile = __DIR__ .'/../../db/weatherstation.sql';
+    protected $sqlfile = __DIR__ .'/../../app/db/weatherstation.sql';
 
     public function doInstall() {
 

@@ -17,10 +17,17 @@ $root = App\WeatherStationService::get('sub_path');
         <link rel="stylesheet" href="<?=$root?>dist/css/latest.min.css">
         <link rel="icon" href="<?=$root?>dist/img/cloud_circle-24px.svg" type="image/x-icon">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            var site = {
+                name:"Dashboard",
+                hash:"",
+                sub_path:"<?=$root?>"
+            }
+        </script>
         </head>
     <body>
         <main id="logon-form">
-            <form method="POST" action="<?=$root?>login">
+            <form id="login" method="post" action="<?=$root?>login">
               <div class="inner-form">
                   <div class="headline-section">
                       <img class="img" src="<?=$root?>dist/img/cloud-white-18dp.svg">
@@ -28,16 +35,17 @@ $root = App\WeatherStationService::get('sub_path');
                   </div>
                   <div class="form-group">
                       <div class="form-group">
-                        <div class="input-group mb-3">
+                        <div class="input-section input-group mb-3">
                           <div class="input-group-prepend">
                             <span class="input-group-text">Hash</span>
                           </div>
-                          <input name="login_hash" type="text" class="form-control form-control-lg">
+                          <input id="hash" name="login_hash" type="text" class="form-control form-control-lg" required>
+                          <div class="feedback"></div>
                         </div>
                       </div>
                     </div>
                   <div class="form-group">
-                      <button name="try_auth" type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                      <button id="submit" name="try_auth" type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                   </div>
               </div>
             </form>

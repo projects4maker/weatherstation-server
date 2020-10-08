@@ -1,4 +1,5 @@
 main#logon-form .inner-form {
+    
     position: fixed;
     width: 36rem;
     top: 50%;
@@ -13,14 +14,20 @@ main#logon-form .inner-form {
         justify-content: center;
 
         .text {
+
             font-size: 2.3rem;
             font-weight: bold;
         }
 
         .img {
+
             width: 48px;
             height: 48px;
             margin-right: 10px;
         }
     }
+}
+.feedback {
+
+    display: none;
 }

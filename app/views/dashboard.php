@@ -20,7 +20,9 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             var site = {
-                hash:"<?=$hash?>"
+                name:"Dashboard",
+                hash:"<?=$hash?>",
+                sub_path:"<?=$root?>"
             }
         </script>
     </head>
@@ -41,6 +43,6 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
 
         </main>
         <footer id="status-bar"></footer>
+        <script src="<?=$root?>dist/js/latest.min.js"></script>
     </body>
-    <script src="<?=$root?>dist/js/latest.min.js"></script>
 </html>

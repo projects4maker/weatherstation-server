@@ -11,6 +11,7 @@ use App\Controller\Api\GetController;
 use App\Controller\Api\PostController;
 use App\Controller\Dashboard\DashboardController;
 use App\Controller\Dashboard\LoginController;
+use App\Controller\Dashboard\AjaxController;
 use App\WeatherStationService;
 use Slim\Interfaces\RouteCollectorProxyInterface as GroupInterface;
 
@@ -47,6 +48,8 @@ $app->any(WeatherStationService::get('sub_path'), function ($request, $response,
             ->withHeader('Location', WeatherStationService::get('sub_path') . 'dashboard')
             ->withStatus(302);
 });
+
+$app->post(WeatherStationService::get('sub_path') . 'ajax/{request}', AjaxController::class . ':response');
 
 $app->map(['GET', 'POST'], WeatherStationService::get('sub_path') . 'login', LoginController::class . ':response');
 
