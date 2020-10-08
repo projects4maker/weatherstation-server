@@ -24,7 +24,7 @@ class LoginController {
 
     public function response($request, $response, $args){
 
-        if(isset($this->data['hash'])) {
+        if(isset($this->data['hash']) && Weatherstation::auth($this->data['hash'])) {
 
             return $response
                 ->withHeader('Location', Weatherstation::get('sub_path') . 'dashboard')

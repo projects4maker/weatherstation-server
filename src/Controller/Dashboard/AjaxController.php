@@ -39,7 +39,7 @@ class AjaxController {
             $this->handleLogin();
         } elseif($args['request'] == 'logout') {
 
-            //TODO
+            $this->handleLogout();
         }
 
         $response->getBody()->write($this->payload->jsonResponse());
@@ -71,5 +71,25 @@ class AjaxController {
 
             $this->payload->setData(['auth' => 'failed', 'msg' => 'Auth failed.']);
         }
+    }
+
+    protected function handleLogout() {
+
+        //Bugfix
+        $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
+
+        /**
+         * set cookie
+         */
+        setcookie(
+            'hash', //name
+            '', //value
+            time()+99999, //expire
+            Weatherstation::get('sub_path'), //path
+            $domain,  //vaild 
+            true //unset
+        );
+
+        $this->payload->setData(['logout' => 'ok', 'msg' => 'Logout successful.']);
     }
 }
