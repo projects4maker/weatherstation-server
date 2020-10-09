@@ -29,17 +29,20 @@ class AjaxController {
 
     public function response($request, $response, $args){
 
-        if(!isset($this->data['hash'])) {
-
-            $this->payload->applyError('Missing hash.');
-        }
-
         if($args['request'] == 'login') {
 
+            if(!isset($this->data['hash'])) {
+
+                $this->payload->applyError('Missing hash.');
+            }
+            
             $this->handleLogin();
         } elseif($args['request'] == 'logout') {
 
             $this->handleLogout();
+        } else {
+
+            throw new ProcException('Unknown ajax request.');
         }
 
         $response->getBody()->write($this->payload->jsonResponse());
@@ -51,7 +54,7 @@ class AjaxController {
 
         if(Weatherstation::auth($this->data['hash'])) {
 
-            //Bugfix
+            //development-bug-fix
             $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
 
             /**

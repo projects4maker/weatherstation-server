@@ -1,6 +1,7 @@
 $("#login").submit(function(e) {
 
     var display = function(msg, subject = 'valid') {
+
         if (subject == 'invalid') {
 
             $("#hash").addClass('is-invalid');
@@ -40,6 +41,8 @@ $("#login").submit(function(e) {
 
     result.done(function(d) {
 
+        $('.inner-form .alert').last().remove();
+        
         if (d.status == 'ok' &&
             d.data.auth == 'ok') {
 
