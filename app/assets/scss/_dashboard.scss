@@ -27,23 +27,22 @@ nav#dashboard-head {
         }
     }
 
-    .head-cli {
+    .user-section {
 
-        width: 300px;
-        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-        .inner-cli {
-            border-radius: 3px;
-            width: 100%;
-            background-color: $gray-200;
-            padding: 1rem;
+        .info-tab {
+
+            .status-pill {
+                margin-right: 5px;
+            }
         }
-    }
 
-    .info-tab {
-
-        .status-pill {
-            margin-right: 5px;
+        .seperator {
+            margin-left: 10px;
+            margin-right: 10px;
         }
     }
 }

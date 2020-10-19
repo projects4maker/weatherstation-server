@@ -32,17 +32,15 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
                 <img class="img" src="<?=$root?>dist/img/cloud-white-18dp.svg">
                 <span class="text">Weatherstation Dashboard</span>
             </div>
-            <div class="head-cli">
-                <div class="inner-cli">
-                    <span>Loading..</span>
+            <div class="user-section">
+                <div class="info-tab">
+                    <span class="status-pill badge badge-pill badge-danger">Outdated</span>
+                    <span class="status-text">Last value received at <strong>20.20.1212</strong></span>
                 </div>
-            </div>
-            <div class="form-container">
-                <button id="logout" type="button" class="btn btn-primary btn-sm">Log out</button>
-            </div>
-            <div class="info-tab">
-                <span class="status-pill badge badge-pill badge-danger">Outdated</span>
-                <span class="status-text">Last value received at <strong>20.20.1212</strong></span>
+                <div class="seperator">|</div>
+                <div class="form-container">
+                    <button id="logout" type="button" class="btn btn-primary btn-sm">Log out</button>
+                </div>
             </div>
         </nav>
         <main id="dashboard">
