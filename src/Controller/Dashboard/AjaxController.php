@@ -78,7 +78,7 @@ class AjaxController {
 
     protected function handleLogout() {
 
-        //Bugfix
+        //development-bug-fix
         $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? $_SERVER['HTTP_HOST'] : false;
 
         /**
@@ -94,5 +94,7 @@ class AjaxController {
         );
 
         $this->payload->setData(['logout' => 'ok', 'msg' => 'Logout successful.']);
+    
+        //TODO: Add fail
     }
 }

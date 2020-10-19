@@ -27,11 +27,24 @@ nav#dashboard-head {
         }
     }
 
+    .head-cli {
+
+        width: 300px;
+        padding: 1rem;
+
+        .inner-cli {
+            border-radius: 3px;
+            width: 100%;
+            background-color: $gray-200;
+            padding: 1rem;
+        }
+    }
+
     .info-tab {
 
-        .seperator {
-            margin: 0 10px 0 10px;
-        }        
+        .status-pill {
+            margin-right: 5px;
+        }
     }
 }
 
