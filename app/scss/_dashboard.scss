@@ -36,6 +36,7 @@ nav#dashboard-head {
         .info-tab {
 
             .status-pill {
+                @extend .badge-pill;
                 margin-right: 5px;
             }
         }

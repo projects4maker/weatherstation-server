@@ -35,7 +35,7 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             </div>
             <div class="user-section">
                 <div class="info-tab">
-                    <span class="status-pill badge badge-pill badge-danger">Outdated</span>
+                    <span class="status-pill badge badge-pill badge-secondary">Unknown</span>
                     <span class="status-text">Last value received at <strong>20.20.1212</strong></span>
                 </div>
                 <div class="seperator">|</div>
