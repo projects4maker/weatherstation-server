@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build-sass": "sass --style=compressed ./app/assets/scss/index.scss ./dist/css/latest.min.css",
-    "build-js": "terser ./app/assets/js/*.js --source-map --output ./dist/js/latest.min.js",
+    "build-sass": "sass --style=compressed ./app/scss/index.scss ./dist/css/latest.min.css",
+    "build-js": "terser ./app/js/*.js --source-map --output ./dist/js/latest.min.js",
     "build": "npm run build-sass && npm run build-js"
   },
   "dependencies": {
@@ -11,5 +11,6 @@
     "node-sass": "^4.14.1",
     "sass": "^1.26.10",
     "terser": "^5.3.4"
-  }
+  },
+  "devDependencies": {}
 }
