@@ -8,10 +8,10 @@
 function statusbar(d='', s=0) {
 
     //case date
-    date = Date(d);
-    now = Date().now();
+    date = new Date(d);
+    now = new Date();
 
-    bar = $('#dashboard-head .info-tab'); 
+    bar = $('#dashboard-head .user-section .info-tab'); 
 
     pill = function(bar, txt, cls) {
 
@@ -30,7 +30,13 @@ function statusbar(d='', s=0) {
     }
 
     case_day = function(date, now) {
-        //tODO
+
+        today = now.getFullYear() + now.getMonth() + now.getDate();
+        thatday = date.getFullYear() + date.getMonth() + date.getDate();
+        if(today == thatday) {
+
+            return 'today'; //TODO
+        }
     }
   
     switch (s) {
@@ -42,6 +48,9 @@ function statusbar(d='', s=0) {
             break;
         case 1:
 
+            minutes = Math.round((date.getTime() - now.getTime())*100/6);
+
+            txt(bar, 'Last update' + minutes + 'minuts ago.');
             pill(bar, 'Up to date', 'success');
             break;
         case 2:

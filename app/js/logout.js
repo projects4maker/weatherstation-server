@@ -9,7 +9,7 @@ $("#logout").click(function(e) {
 
     e.preventDefault();
 
-    $(this).prop('disabled', true);
+    $("#logout").prop('disabled', true);
 
     var result = $.post(site.sub_path + 'ajax/logout', {});
 
@@ -34,5 +34,5 @@ $("#logout").click(function(e) {
         alert("Logout ajax request failed.");
     });
 
-    $(this).prop('disabled', false);
+    $("#logout").prop('disabled', false);
 });
