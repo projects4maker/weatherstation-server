@@ -54,7 +54,7 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
         <footer id="status-bar">
             <div class="value-container">
                 <div class="value" id="humidity">
-                    <img class="img" src="<?=$root?>dist/img/brightness_7-white-18dp.svg">
+                    <img class="img" src="<?=$root?>dist/img/umbrella-white-18dp.svg">
                     <span class="text">27 H</span>
                 </div>
                 <div class="value" id="temperature">
