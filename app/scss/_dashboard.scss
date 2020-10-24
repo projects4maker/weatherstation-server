@@ -48,9 +48,39 @@ nav#dashboard-head {
     }
 }
 
+main#dashboard {
+    padding: 10px 15px 10px 15px;
+    height: 100%;
+}
 
 footer#status-bar {
-
-    height: 50px;
+    position: fixed;
+    bottom: 0px;
+    border-top: 1px solid $light;
+    height: 60px;
     width: 100%;
+    padding: 0 15px 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .value-container {
+        display: flex;
+        align-items: center;
+
+        .value {
+            padding: 5px;
+            margin: 0 10px 0 10px;
+            border: 1px solid $light;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 100px;
+        
+            .img {
+                margin-right: 3px;
+            }
+        }
+    }
 }

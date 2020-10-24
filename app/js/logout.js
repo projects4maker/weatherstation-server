@@ -9,18 +9,18 @@ $("#logout").click(function(e) {
 
     e.preventDefault();
 
-    $("#logout").prop('disabled', true);
+    $("#logout").prop("disabled", true);
 
-    var result = $.post(site.sub_path + 'ajax/logout', {});
+    let result = $.post(site.sub_path + "ajax/logout", {});
 
     result.done(function(d) {
         
-        if (d.status == 'ok' &&
-            d.data.logout == 'ok') {
+        if (d.status == "ok" &&
+            d.data.logout == "ok") {
 
-            window.location.href = site.sub_path + 'login';
-        } else if (d.status == 'ok' &&
-            d.data.logout == 'failed') {
+            window.location.href = site.sub_path + "login";
+        } else if (d.status == "ok" &&
+            d.data.logout == "failed") {
 
             alert("Logout request failed.");
         } else {
@@ -34,5 +34,5 @@ $("#logout").click(function(e) {
         alert("Logout ajax request failed.");
     });
 
-    $("#logout").prop('disabled', false);
+    $("#logout").prop("disabled", false);
 });

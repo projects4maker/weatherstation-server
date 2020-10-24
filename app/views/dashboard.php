@@ -23,7 +23,9 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             var site = {
                 name:"Dashboard",
                 hash:"<?=$hash?>",
-                sub_path:"<?=$root?>"
+                sub_path:"<?=$root?>",
+                charts: null,
+                cron: {}
             }
         </script>
     </head>
@@ -36,7 +38,7 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             <div class="user-section">
                 <div class="info-tab">
                     <span class="status-pill badge badge-pill badge-secondary">Unknown</span>
-                    <span class="status-text">Last value received at <strong>20.20.1212</strong></span>
+                    <span class="status-text">Status unknown.</span>
                 </div>
                 <div class="seperator">|</div>
                 <div class="form-container">
@@ -45,9 +47,35 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             </div>
         </nav>
         <main id="dashboard">
-
+            <div class="chart">
+                <canvas id="myChart" width="50" height="400"></canvas>
+            </div>
         </main>
-        <footer id="status-bar"></footer>
+        <footer id="status-bar">
+            <div class="value-container">
+                <div class="value" id="humidity">
+                    <img class="img" src="<?=$root?>dist/img/brightness_7-white-18dp.svg">
+                    <span class="text">27 H</span>
+                </div>
+                <div class="value" id="temperature">
+                    <img class="img" src="<?=$root?>dist/img/ac_unit-white-18dp.svg">
+                    <span class="text">26.3 &deg;C</span>
+                </div>
+                <div class="value" id="pressure">
+                    <img class="img" src="<?=$root?>dist/img/close_fullscreen-white-18dp.svg">
+                    <span class="text">1012 mbar</span>
+                </div>
+            </div>
+        </footer>
         <script src="<?=$root?>dist/js/latest.min.js"></script>
+        <script>
+            $(document).ready(function(e){
+                site.charts = null;
+                site.data = null;
+                site.last = null;
+
+                setInterval(cron(), 10000);
+            });
+        </script>
     </body>
 </html>

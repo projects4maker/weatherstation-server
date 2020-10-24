@@ -5,61 +5,107 @@
  * 
  * @see projects4maker.com/weatherstation
  */
-function statusbar(d='', s=0) {
+function statusbar(datestring="", status=0) {
+
 
     //case date
-    date = new Date(d);
+    date = new Date(datestring);
     now = new Date();
 
-    bar = $('#dashboard-head .user-section .info-tab'); 
+    let bar = "#dashboard-head .user-section .info-tab"; 
 
     pill = function(bar, txt, cls) {
 
-        $(bar + ' .status-pill').html(txt);
+        $(bar + " .status-pill").html(txt);
 
-        $(bar + ' .status-pill').removeClass('badge-secondary');
-        $(bar + ' .status-pill').removeClass('badge-danger');
-        $(bar + ' .status-pill').removeClass('badge-warning');
-        $(bar + ' .status-pill').removeClass('badge-success');
+        $(bar + " .status-pill").removeClass("badge-secondary");
+        $(bar + " .status-pill").removeClass("badge-danger");
+        $(bar + " .status-pill").removeClass("badge-warning");
+        $(bar + " .status-pill").removeClass("badge-success");
 
-        $(bar + ' .status-pill').addClass('badge-'+cls);
+        $(bar + " .status-pill").addClass("badge-"+cls);
     }
 
     txt = function(bar, txt) {
-        $(bar + ' .status-text').html(txt);
+        $(bar + " .status-text").html(txt);
     }
 
-    case_day = function(date, now) {
+    case_day = function(n,d) {
 
-        today = now.getFullYear() + now.getMonth() + now.getDate();
-        thatday = date.getFullYear() + date.getMonth() + date.getDate();
+        today = n.getFullYear() + n.getMonth() + n.getDate();
+        thatday = d.getFullYear() + d.getMonth() + d.getDate();
         if(today == thatday) {
 
-            return 'today'; //TODO
+            return "today";
+        } else if(today-1 == thatday) {
+
+            return "yesterday";
+        } else {
+
+            return "else";
         }
     }
+
+    current_time = function(d) {
+
+        string = "";
+
+        if(d.getHours() < 10) {
+
+            string = "0" + d.getHours();
+        } else {
+
+            string = d.getHours();
+        }
+
+        string = string + ":";
+
+        if(d.getMinutes() < 10) {
+
+            string = string + "0" + d.getMinutes();
+        } else {
+            
+            string = string + d.getMinutes();
+        }
+
+        return string;
+    }
+
+    minutes_ago = function(n,d) {
+
+        return Math.round((n.getTime() - d.getTime())/(1000*60));
+    }
   
-    switch (s) {
+    switch (status) {
 
         case 0:
 
-            txt(bar, 'Status unknown.');
-            pill(bar, 'Unknown', 'secondary');
+            txt(bar, "Status unknown.");
+            pill(bar, "Unknown", "secondary");
             break;
         case 1:
 
-            minutes = Math.round((date.getTime() - now.getTime())*100/6);
-
-            txt(bar, 'Last update' + minutes + 'minuts ago.');
-            pill(bar, 'Up to date', 'success');
+            txt(bar, "Last update " + minutes_ago(now,date) + " minutes ago. " + case_day(now,date) + " at " + current_time(date) + ".");
+            pill(bar, "Up to date", "success");
             break;
         case 2:
 
-            pill(bar, 'Nearly outdated', 'warning');
+            txt(bar, "Last update " + Math.round(minutes_ago(now,date)/60) + " hours ago. " + case_day(now,date) + " at " + current_time(date) + ".");
+            pill(bar, "Nearly outdated", "warning");
             break;
         case 3:
 
-            pill(bar, 'Outdated', 'danger');
+            day = case_day(now,date);
+
+            if(day == "today" || day == "yesterday") {
+
+                txt(bar, "Last update " + day + " at " + current_time(date) + ".");
+            } else {
+
+                txt(bar, "Last update " + date.toLocaleDateString() + " at " + current_time(date) + ".");
+            }
+
+            pill(bar, "Outdated", "danger");
             break;
     }
 
