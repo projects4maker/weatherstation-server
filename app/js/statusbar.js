@@ -85,12 +85,14 @@ function statusbar(datestring="", status=0) {
             break;
         case 1:
 
-            txt(bar, "Last update " + minutes_ago(now,date) + " minutes ago. " + case_day(now,date) + " at " + current_time(date) + ".");
+            let m = minutes_ago(now,date);
+
+            txt(bar, "Last database update " + m + " minute" + (m==1?"":"s") + " ago.");
             pill(bar, "Up to date", "success");
             break;
         case 2:
 
-            txt(bar, "Last update " + Math.round(minutes_ago(now,date)/60) + " hours ago. " + case_day(now,date) + " at " + current_time(date) + ".");
+            txt(bar, "Last database update " + Math.round(minutes_ago(now,date)/60) + " hours ago at " + case_day(now,date) + ", " + current_time(date) + ".");
             pill(bar, "Nearly outdated", "warning");
             break;
         case 3:
@@ -99,10 +101,10 @@ function statusbar(datestring="", status=0) {
 
             if(day == "today" || day == "yesterday") {
 
-                txt(bar, "Last update " + day + " at " + current_time(date) + ".");
+                txt(bar, "Last database update " + day + " at " + current_time(date) + ".");
             } else {
 
-                txt(bar, "Last update " + date.toLocaleDateString() + " at " + current_time(date) + ".");
+                txt(bar, "Last database update " + date.toLocaleDateString() + " at " + current_time(date) + ".");
             }
 
             pill(bar, "Outdated", "danger");
@@ -110,8 +112,3 @@ function statusbar(datestring="", status=0) {
     }
 
 }
-
-//0:unknown: Failed
-//1:up to date: "Success" = last 15 min
-//2:nearly: "Warning" = more than 3 hours ago
-//3:Outdated: "Danger" = more than 6 hours ago

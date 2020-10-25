@@ -1,0 +1,4 @@
+//0:unknown: Failed
+//1:up to date: "Success" = last 15 min
+//2:nearly: "Warning" = more than 3 hours ago
+//3:Outdated: "Danger" = more than 6 hours ago

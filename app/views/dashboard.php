@@ -38,7 +38,7 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             <div class="user-section">
                 <div class="info-tab">
                     <span class="status-pill badge badge-pill badge-secondary">Unknown</span>
-                    <span class="status-text">Status unknown.</span>
+                    <span class="status-text">Fetching latest data..</span>
                 </div>
                 <div class="seperator">|</div>
                 <div class="form-container">
@@ -55,26 +55,27 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             <div class="value-container">
                 <div class="value" id="humidity">
                     <img class="img" src="<?=$root?>dist/img/umbrella-white-18dp.svg">
-                    <span class="text">27 H</span>
+                    <span class="text"><span class="parsed-value">--</span>H</span>
                 </div>
                 <div class="value" id="temperature">
                     <img class="img" src="<?=$root?>dist/img/ac_unit-white-18dp.svg">
-                    <span class="text">26.3 &deg;C</span>
+                    <span class="text"><span class="parsed-value">-.--</span>&deg;C</span>
                 </div>
                 <div class="value" id="pressure">
                     <img class="img" src="<?=$root?>dist/img/close_fullscreen-white-18dp.svg">
-                    <span class="text">1012 mbar</span>
+                    <span class="text"><span class="parsed-value">-.--</span>bar</span>
                 </div>
             </div>
         </footer>
         <script src="<?=$root?>dist/js/latest.min.js"></script>
         <script>
             $(document).ready(function(e){
-                site.charts = null;
-                site.data = null;
-                site.last = null;
-
-                setInterval(cron(), 10000);
+                site.latest = {
+                    data: null,
+                    status: 0
+                };
+                
+                var interval = setInterval(cron, 3000);
             });
         </script>
     </body>
