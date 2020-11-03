@@ -7,6 +7,9 @@
  */
 function cron() {
     
+    /**
+     * preparing cron stuff
+     */
     let result = $.get(site.sub_path + "api/get", {
         hash: site.hash,
     });
@@ -55,6 +58,20 @@ function cron() {
         site.latest.status = 0;
     }
 
-    statusbar(site.latest.data.draw_time, site.latest.status);    
+    /**
+     * job: statusbar
+     */
+    statusbar(site.latest.data.draw_time, site.latest.status); 
+    
+    /**
+     * job: valuedash
+     */
+    if(site.latest.status == 1) {
+
+        valuedash(site.latest.data, 1);
+    } else {
+
+        valuedash({}, 0);
+    }
 
 }
