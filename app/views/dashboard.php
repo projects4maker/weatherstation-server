@@ -49,15 +49,42 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
         <main id="dashboard">
             <div id="sidebar">
                 <ul class="list-ul">
-                    <li class="list-element"><a href="#" id="tail-lc"><span class="io-icon-ding"></span> Live-Chart</a></li>
-                    <li class="list-element"><a href="#"><span class="io-icon-ding"></span> Auswertung</a></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/live_tv-white-18dp.svg"> Live-Chart</a></li>
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
+                </ul>
+
+                <h6>Chart Group</h6>
+                <ul class="list-ul">
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/live_tv-white-18dp.svg"> Live-Chart</a></li>
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
+                </ul>
+
+                <h6>Chart Group</h6>
+                <ul class="list-ul">
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/live_tv-white-18dp.svg"> Live-Chart</a></li>
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
+                </ul>
+                
+                <h6>Chart Group</h6>
+                <ul class="list-ul">
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/live_tv-white-18dp.svg"> Live-Chart</a></li>
+                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
                 </ul>
             </div>
-            <div id="chart">
-                <canvas id="myChart" width="100%" height="100%"></canvas>
+            <div id="content">
+                <div class="header">
+                    <div class="headline">
+                        <span class="text">Live-Chart</span> <small>Live value updates.</small>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm">Export</button>
+                </div>
+                <div class="chart">
+                    Space
+                </div>
             </div>
         </main>
         <footer id="status-bar">
@@ -72,10 +99,13 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
                 </div>
                 <div class="value" id="pressure">
                     <img class="img" src="<?=$root?>dist/img/close_fullscreen-white-18dp.svg">
-                    <span class="text"><span class="parsed-value">-.--</span>mbar</span>
+                    <span class="text"><span class="parsed-value">-.--</span>hPa</span>
                 </div>
             </div>
         </footer>
+        <div class="alert-area">
+
+        </div>
         <script src="<?=$root?>dist/js/latest.min.js"></script>
         <script>
             $(document).ready(function(e){
@@ -89,28 +119,23 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
         </script>
         <script>
 var ctx = document.getElementById('myChart').getContext('2d');
+
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
+    maintainAspectRatio: false,
+    responsive: true,
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Red', 'Blue'],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [5, 4],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(54, 162, 235, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(54, 162, 235, 1)'
             ],
             borderWidth: 1
         }]

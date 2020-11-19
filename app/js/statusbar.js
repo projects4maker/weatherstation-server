@@ -18,12 +18,12 @@ function statusbar(datestring="", status=0) {
 
         $(bar + " .status-pill").html(txt);
 
-        $(bar + " .status-pill").removeClass("badge-secondary");
-        $(bar + " .status-pill").removeClass("badge-danger");
-        $(bar + " .status-pill").removeClass("badge-warning");
-        $(bar + " .status-pill").removeClass("badge-success");
+        ['secondary', 'danger', 'warning', 'success'].forEach(function(key) {
+            
+            $(bar + " .status-pill").removeClass("badge-" + key);
+        });
 
-        $(bar + " .status-pill").addClass("badge-"+cls);
+        $(bar + " .status-pill").addClass("badge-" + cls);
     }
 
     txt = function(bar, txt) {

@@ -23,13 +23,14 @@ function cron() {
             
         } else {
 
-            alert("Placeholder error: " + d.message);
+            throwalert("Ajax request failed with: " + d.message,1);
         }
     });
 
-    result.fail(function(d) {
+    result.fail(function(resp) {
 
-        alert("Placeholder error: " + d.message);
+        obj = JSON.parse(resp.responseText);
+        throwalert("Ajax request failed with: " + obj.message ,1);
     });
     
     if(site.latest.data) {

@@ -26,7 +26,7 @@ $("#login").submit(function(e) {
     let login_alert = function(msg) {
 
         $(".inner-form .headline-section").after(
-            "<div class=\"alert alert-dismissible alert-danger\">\
+            "<div class=\"alert alert-danger\">\
                     <strong>Error:</strong> " + msg + "\
                   </div>"
         );
