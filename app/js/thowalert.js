@@ -42,10 +42,13 @@ function throwalert(msg, level=0) {
         </div>"
     );
 
-    $("#" + id).delay(2400).fadeOut();
+    $(area).find(":hidden").remove();
 
-    $('#' + id + ' .close').click(function(e) {
+    $("#" + id).delay(6000).fadeOut();
 
-        $(this).parent().fadeOut();
+    $("#" + id + " .close").click(function() {
+
+        $(this).parent().remove();
     });
 }
+

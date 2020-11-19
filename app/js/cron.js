@@ -7,9 +7,6 @@
  */
 function cron() {
     
-    /**
-     * preparing cron stuff
-     */
     let result = $.get(site.sub_path + "api/get", {
         hash: site.hash,
     });
@@ -29,11 +26,21 @@ function cron() {
 
     result.fail(function(resp) {
 
-        obj = JSON.parse(resp.responseText);
-        throwalert("Ajax request failed with: " + obj.message ,1);
+        if(resp.responseText) {
+            
+            message = JSON.parse(resp.responseText).message;
+            status = 1;
+        } else {
+
+            //Server unreachable
+            message = "Server unreachable.";
+            status = 2;
+        }
+        
+        throwalert("Ajax request failed with: " + message, status);
     });
     
-    if(site.latest.data) {
+    if(site.latest.data != null) {
 
         date = new Date(site.latest.data.draw_time);
         now = new Date();
@@ -54,19 +61,15 @@ function cron() {
             site.latest.status = 0;
         }
         
+        statusbar(site.latest.data.draw_time, site.latest.status); 
+
     } else {
 
         site.latest.status = 0;
-    }
 
-    /**
-     * job: statusbar
-     */
-    statusbar(site.latest.data.draw_time, site.latest.status); 
+        statusbar("", site.latest.status); 
+    }
     
-    /**
-     * job: valuedash
-     */
     if(site.latest.status == 1) {
 
         valuedash(site.latest.data, 1);

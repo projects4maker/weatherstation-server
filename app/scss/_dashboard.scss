@@ -92,6 +92,13 @@ main#dashboard {
                 color: $gray-100;
                 text-decoration: none;
             }
+
+            .list-element a:active, 
+            .list-element a.active {
+
+                color: $light;
+                font-size: bold;
+            }
         }
     }
 
@@ -101,7 +108,6 @@ main#dashboard {
         height: 100%;
         min-width: 1200px;
         width: 87%;
-        overflow-y: scroll;
         background-color: #1e2c39;
         position: relative;
 
@@ -125,9 +131,28 @@ main#dashboard {
             }
         }
 
-        .chart {
+        .viewable {
             padding: 0;
-            height: calc(100% - 40px);
+            height: calc(100% - 55px);
+            min-height: 700px;
+            position: relative;
+
+            .chart {
+
+                height: calc(100% - 60px);
+                position: relative;
+
+                canvas {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
+            .chart-controls {
+
+                height: 60px;
+                width: 100%;
+            }
         }
     }
 }

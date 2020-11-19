@@ -49,7 +49,7 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
         <main id="dashboard">
             <div id="sidebar">
                 <ul class="list-ul">
-                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/live_tv-white-18dp.svg"> Live-Chart</a></li>
+                    <li class="list-element"><a href="#live"><img class="icon" src="<?=$root?>dist/img/live_tv-white-18dp.svg"> Live-Chart</a></li>
                     <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
                     <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
                     <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
@@ -82,8 +82,13 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
                     </div>
                     <button type="button" class="btn btn-outline-primary btn-sm">Export</button>
                 </div>
-                <div class="chart">
-                    Space
+                <div class="viewable">
+                    <div class="chart">
+                    <canvas style="position: absolute;" id="ch">Your browser does not support the canvas element.</canvas>
+                    </div>
+                    <div class="chart-controls">
+
+                    </div>
                 </div>
             </div>
         </main>
@@ -104,7 +109,7 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             </div>
         </footer>
         <div class="alert-area">
-
+            <!-- do not remove this lines -->
         </div>
         <script src="<?=$root?>dist/js/latest.min.js"></script>
         <script>
@@ -118,24 +123,29 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             });
         </script>
         <script>
-var ctx = document.getElementById('myChart').getContext('2d');
-
-var myChart = new Chart(ctx, {
+            var ctx = document.getElementById('ch').getContext('2d');
+            var myChart = new Chart(ctx, {
     type: 'line',
-    maintainAspectRatio: false,
-    responsive: true,
     data: {
-        labels: ['Red', 'Blue'],
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
             label: '# of Votes',
-            data: [5, 4],
+            data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)'
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
         }]

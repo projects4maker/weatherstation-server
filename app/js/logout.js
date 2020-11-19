@@ -22,16 +22,16 @@ $("#logout").click(function(e) {
         } else if (d.status == "ok" &&
             d.data.logout == "failed") {
 
-            alert("Logout request failed.");
+                throwalert("Logout request failed",2);
         } else {
 
-            alert("Logout request rejected.");
+            throwalert("Logout request rejected",2);
         }
     });
 
     result.fail(function() {
 
-        alert("Logout ajax request failed.");
+        throwalert("Logout request failed",2);
     });
 
     $("#logout").prop("disabled", false);
