@@ -50,17 +50,13 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             <div id="sidebar">
                 <ul class="list-ul">
                     <li class="list-element"><a href="#live"><img class="icon" src="<?=$root?>dist/img/live_tv-white-18dp.svg"> Live-Chart</a></li>
-                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
-                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
-                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
-                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
-                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
                 </ul>
 
-                <h6>Chart Group</h6>
+                <h6>Range Charts</h6>
                 <ul class="list-ul">
-                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/live_tv-white-18dp.svg"> Live-Chart</a></li>
-                    <li class="list-element"><a href="#"><img class="icon" src="<?=$root?>dist/img/equalizer-white-18dp.svg"> Data Value Chart</a></li>
+                    <li class="list-element"><a href="#h-comp"><img class="icon" src="<?=$root?>dist/img/umbrella-white-18dp.svg"> Humidity comparison</a></li>
+                    <li class="list-element"><a href="#t-comp"><img class="icon" src="<?=$root?>dist/img/ac_unit-white-18dp.svg"> Temperature comparison</a></li>
+                    <li class="list-element"><a href="#p-comp"><img class="icon" src="<?=$root?>dist/img/close_fullscreen-white-18dp.svg"> Pressure comparison</a></li>
                 </ul>
 
                 <h6>Chart Group</h6>
@@ -83,11 +79,20 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
                     <button type="button" class="btn btn-outline-primary btn-sm">Export</button>
                 </div>
                 <div class="viewable">
-                    <div class="chart">
-                    <canvas style="position: absolute;" id="ch">Your browser does not support the canvas element.</canvas>
+                    <div class="chart-columne">
+                        <div class="chart-container chart-row">
+                            <canvas id="ch">Your browser does not support the canvas element.</canvas>
+                        </div>
+                        <div class="chart-container chart-row">
+                            <canvas id="cr">Your browser does not support the canvas element.</canvas>
+                        </div>                        
+                        <div class="chart-container chart-row">
+                            <canvas id="cl">Your browser does not support the canvas element.</canvas>
+                        </div>
                     </div>
                     <div class="chart-controls">
-
+                        <button type="button" class="control-item btn btn-outline-primary btn-sm">Toggle updates off</button>
+                        <button type="button" class="control-item btn btn-outline-primary btn-sm">Toggle updates off</button>
                     </div>
                 </div>
             </div>
@@ -119,6 +124,10 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
                     status: 0
                 };
                 
+                //Router
+                router();
+
+                //Interval
                 var interval = setInterval(cron, 3000);
             });
         </script>
@@ -127,30 +136,66 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Red', 'Blue'],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
+            data: [12, 19],
+            fill: false
         }]
     },
     options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+            var ctx = document.getElementById('cl').getContext('2d');
+            var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Red', 'Blue'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19],
+            fill: false
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<script>
+            var ctx = document.getElementById('cr').getContext('2d');
+            var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Red', 'Blue'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19],
+            fill: false
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {

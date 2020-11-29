@@ -74,7 +74,7 @@ main#dashboard {
             flex-wrap: wrap;
             flex-direction: column;
             list-style: none;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
 
             .list-element a {
 
@@ -132,26 +132,52 @@ main#dashboard {
         }
 
         .viewable {
+
             padding: 0;
             height: calc(100% - 55px);
             min-height: 700px;
             position: relative;
 
-            .chart {
+            .chart-columne {
 
-                height: calc(100% - 60px);
-                position: relative;
+                height: calc(100% - 75px);
+                margin-bottom: 15px;
 
-                canvas {
-                    height: 100%;
+                .chart-container {
+
+                    position: relative;
                     width: 100%;
+
+                    canvas {
+                        height: 100%;
+                        width: 100%;
+                    }
                 }
+
+                .chart-row {
+
+                    height: 33.3333%;
+                }
+
+                .chart-standalone {
+
+                    height: 100%;
+                }
+            
             }
 
             .chart-controls {
 
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                /*background-color: $gray-200;*/
                 height: 60px;
                 width: 100%;
+
+                .control-item {
+                    margin-right: 7px;
+                }
             }
         }
     }
