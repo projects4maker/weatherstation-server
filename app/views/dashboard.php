@@ -74,7 +74,7 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
             <div id="content">
                 <div class="header">
                     <div class="headline">
-                        <span class="text">Live-Chart</span> <small>Live value updates.</small>
+                        <span class="text">Loading</span> <small>Loading</small>
                     </div>
                     <button type="button" class="btn btn-outline-primary btn-sm">Export</button>
                 </div>

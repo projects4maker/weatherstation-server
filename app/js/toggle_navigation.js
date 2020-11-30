@@ -7,5 +7,6 @@
  */
 $('.list-element a').click(function(e) {
 
+    window.location = this.href;
     router();
 });

@@ -5,14 +5,12 @@
  * 
  * @see projects4maker.com/weatherstation
  */
-function model(option) {
-
-    content = '#content';
+function model(options) {
 
     /**
      * Define headline
      */
-    $(content + ".header .headline .text").html(option.title);
-    $(content + ".header .headline small").html(option.description);
+    $("#content .header .headline .text").html(options.title);
+    $("#content .header .headline small").html(options.description);
     
 }
