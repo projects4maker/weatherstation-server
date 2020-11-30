@@ -5,7 +5,7 @@
  * 
  * @see projects4maker.com/weatherstation
  */
-$("#login").submit(function(e) {
+function login() {
 
     let display = function(msg, subject = "valid") {
 
@@ -32,7 +32,7 @@ $("#login").submit(function(e) {
         );
     }
 
-    e.preventDefault();
+    
 
     if ($(".inner-form .alert").length > 2) {
 
@@ -71,6 +71,13 @@ $("#login").submit(function(e) {
     });
 
     $("#submit").prop("disabled", false);
+}
+
+$("#login").submit(function(e) {
+
+    e.preventDefault();
+    login();
+    
 });
 
 $(".input-section input[name=login_hash]").focus(function() {

@@ -35,6 +35,4 @@ function router() {
     //Design Model
     model(options);
 
-    return null;
-
 }

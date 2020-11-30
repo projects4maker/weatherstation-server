@@ -5,10 +5,7 @@
  * 
  * @see projects4maker.com/weatherstation
  */
-$("#logout").click(function(e) {
-
-    e.preventDefault();
-
+function logout() {
     $("#logout").prop("disabled", true);
 
     let result = $.post(site.sub_path + "ajax/logout", {});
@@ -35,4 +32,12 @@ $("#logout").click(function(e) {
     });
 
     $("#logout").prop("disabled", false);
+}
+
+$("#logout").click(function(e) {
+
+    e.preventDefault();
+    logout();
+
 });
+
