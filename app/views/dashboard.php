@@ -24,7 +24,6 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
                 name:"Dashboard",
                 hash:"<?=$hash?>",
                 sub_path:"<?=$root?>",
-                charts: null,
                 cron: {}
             }
         </script>
@@ -80,19 +79,10 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
                 </div>
                 <div class="viewable">
                     <div class="chart-columne">
-                        <div class="chart-container chart-row">
-                            <canvas id="ch">Your browser does not support the canvas element.</canvas>
-                        </div>
-                        <div class="chart-container chart-row">
-                            <canvas id="cr">Your browser does not support the canvas element.</canvas>
-                        </div>                        
-                        <div class="chart-container chart-row">
-                            <canvas id="cl">Your browser does not support the canvas element.</canvas>
-                        </div>
+                        Loading
                     </div>
                     <div class="chart-controls">
-                        <button type="button" class="control-item btn btn-outline-primary btn-sm">Toggle updates off</button>
-                        <button type="button" class="control-item btn btn-outline-primary btn-sm">Toggle updates off</button>
+                        Loading
                     </div>
                 </div>
             </div>
@@ -131,80 +121,5 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
                 var interval = setInterval(cron, 3000);
             });
         </script>
-        <script>
-            var ctx = document.getElementById('ch').getContext('2d');
-            var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Red', 'Blue'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19],
-            fill: false
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
-<script>
-            var ctx = document.getElementById('cl').getContext('2d');
-            var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Red', 'Blue'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19],
-            fill: false
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
-<script>
-            var ctx = document.getElementById('cr').getContext('2d');
-            var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Red', 'Blue'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19],
-            fill: false
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
     </body>
 </html>
