@@ -13,8 +13,9 @@ var routes = {
         trigger: {
             name: "live-cron",
             type: "cron",
+            time: 1000,
             callable: function(e) {
-
+                updateCurrentChart();
             } 
         },
         charts: [{
@@ -49,9 +50,12 @@ var routes = {
                 $(this).attr("value",v==0?1:0);
                 if(v==0) {
                     $(this).html("Toggle updates off");
+                    querySet("tog-updt", "");
                 } else {
                     $(this).html("Toggle updates on");
+                    querySet("tog-updt", 1);
                 }
+                updateCurrentChart();
             },
 
         }]

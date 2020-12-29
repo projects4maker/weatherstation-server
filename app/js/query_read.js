@@ -7,24 +7,12 @@
  */
 function queryRead() {
 
-    var params = {};
-    var hash = window.location.hash;
-    var queryString = hash.split("!");
-    var vars = queryString[1].split("&");
+    let string = queryGetString();
 
-    for(var i = 0; i < vars.length; i++) {
-
-        var pair = vars[i].split("=");
-
-        params[pair[0]] = pair[1];
-    }
-
-    return params;
+    return new URLSearchParams(string).values();
 }
 
-function queryReadParam(key) {
+function queryGetString() {
 
-    let query = queryRead();
-
-    return query[key];
+    return window.location.hash.split("!")[1] || "";
 }

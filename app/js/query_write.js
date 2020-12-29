@@ -5,10 +5,15 @@
  * 
  * @see projects4maker.com/weatherstation
  */
-function queryWrite(params={}) {
+function queryWrite(obj) {
 
-    let query = new URLSearchParams(params).toString();
+    let string = obj.toString();
 
+    if(string != "") {
+
+        string = "!" + string;
+    }
+    
     let hash = window.location.hash.split("!")[0];
 
     if(hash == "#" || hash == "") {
@@ -16,15 +21,30 @@ function queryWrite(params={}) {
         hash = "live";
     }
 
-    window.location.hash = hash + "!" + query;
+    window.location.hash = hash + string;
     
 }
 
-function queryAddParam(key, value) {
-    
-    let query = queryRead();
+function querySet(key, value="") {
 
-    query[key] = value;
+    let string = queryGetString();
+
+    let query = new URLSearchParams(string);
+
+    if(query.has(key)) {
+
+        if(value == "") {
+
+            query.delete(key);
+        } else {
+
+            query.set(key, value);
+        }
+        
+    } else {
+
+        query.append(key, value);
+    }
 
     queryWrite(query);
 }

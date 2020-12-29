@@ -28,11 +28,17 @@ function router() {
             break;
     }
 
+    //Set object
+    site.route = options;
+    
     //Nav
     $(".list-element a").removeClass("active");
     $(".list-element a[href$='" + object + "']").addClass("active");
     
     //Design Model
     model(options);
+
+    //Update the current chart
+    updateCurrentChart();
 
 }

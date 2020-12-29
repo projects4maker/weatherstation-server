@@ -7,6 +7,12 @@
  */
 function model(options) {
 
+
+    /**
+     * reset the current trigger 
+     */
+    site.trigger = null;
+
     /**
      * Define headline
      */
@@ -20,9 +26,9 @@ function model(options) {
 
     var ch_counter = options.charts.length;
 
-    site.charts = site.charts || {};
+    site.charts = {};
 
-    site.charts[options.id] = site.charts[options.id] || [];
+    site.charts[options.id] = [];
 
     for(var i = 0; i < ch_counter; i++) {
 
@@ -55,4 +61,17 @@ function model(options) {
         site.controls[i] = document.getElementById(options.controls[i].id).addEventListener(options.controls[i].event, options.controls[i].callable);
      }
 
+    /**
+     * set the trigger 
+     */
+    switch(options.trigger.type) {
+      
+      case "cron":
+
+        site.trigger = setInterval(options.trigger.callable, options.trigger.time);
+        break;
+      case "controls":
+
+      //TODO
+    }
 }
