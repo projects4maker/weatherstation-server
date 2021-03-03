@@ -1,3 +1,11 @@
+ @import "../../node_modules/bootswatch/dist/superhero/variables";
+ @import "../../node_modules/bootstrap/scss/bootstrap";
+
+/*!
+ * Bootswatch theme: Superhero
+ */
+ @import "../../node_modules/bootswatch/dist/superhero/bootswatch";
+
 /*!
  * raah @ projects4maker.com
  * 
@@ -5,9 +13,6 @@
  * 
  * @see projects4maker.com/weatherstation
  */
- @import "../../node_modules/bootswatch/dist/superhero/variables";
- @import "../../node_modules/bootstrap/scss/bootstrap";
- @import "../../node_modules/bootswatch/dist/superhero/bootswatch";
  @import "root";
  @import "login";
  @import "loading";
