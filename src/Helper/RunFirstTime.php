@@ -46,16 +46,23 @@ class RunFirstTime {
         }
 
         //Install: Database
-        $db = new Db();
-        $pdo = $db->getPdo();
-        $statement = $pdo->prepare(
-            str_replace('%dbname%', WeatherStationService::get('dbname'), $sql)
-        );
-        $statement->execute();
-        $db = null;
+        try {
+            
+            $db = new Db();
+            $pdo = $db->getPdo();
+            $statement = $pdo->prepare(
+                str_replace('%dbname%', WeatherStationService::get('dbname'), $sql)
+            );
+            $statement->execute();
+        } catch(PDOException $e) {
+            
+            echo("Some errors happend while installing the database: " . $e->getMessage());
+            exit();
+        }
+
 
         //Escape
-        echo("Installed!");
+        echo("Finish.");
         exit();
     }
 
