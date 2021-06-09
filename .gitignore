@@ -1,3 +1,15 @@
-./composer.phar
-./composer.lock
-./config/config.ini
+#npm
+package-lock.json
+node_modules/
+
+#composer
+composer.phar
+composer.lock
+vendor/
+
+#config
+config/config.ini
+
+#compiled frontend
+dist/css/*
+dist/js/*
