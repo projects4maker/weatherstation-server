@@ -12,6 +12,7 @@ nav#dashboard-head {
 
     .headline-section {
 
+        user-select: none;
         display: flex;
         align-items: center;
         width: 40%;
@@ -19,6 +20,11 @@ nav#dashboard-head {
         .text {
             font-size: 1.3rem;
             font-weight: bold;
+
+            .host {
+                color: $gray-600;
+                font-size: 1.0rem;
+            }
         }
 
         .img {

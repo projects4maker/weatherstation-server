@@ -8,6 +8,7 @@
  */
 
 $root = App\WeatherStationService::get('sub_path');
+$host = App\WeatherStationService::get('host');
 $hash = App\WeatherStationService::get('weather_station_very_hash');
 ?>
 <!DOCTYPE html>
@@ -36,7 +37,7 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
         <nav id="dashboard-head">
             <div class="headline-section">
                 <img class="img" src="<?=$root?>dist/img/cloud-white-18dp.svg">
-                <span class="text">Weatherstation Dashboard</span>
+                <span class="text">Weatherstation Dashboard <span class="host" title="Database server">on <?=$host?></span></span>
             </div>
             <div class="user-section">
                 <div class="info-tab">
