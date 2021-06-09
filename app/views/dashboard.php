@@ -12,7 +12,7 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
 ?>
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
         <meta charset="utf-8">
         <title>Dashboard | Weatherstation Dashboard</title>
         <link rel="stylesheet" href="<?=$root?>dist/css/latest.min.css">
@@ -24,7 +24,11 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
                 name:"Dashboard",
                 hash:"<?=$hash?>",
                 sub_path:"<?=$root?>",
-                cron: {}
+                cron: {},
+                latest: {
+                    data: null,
+                    status: 0
+                }
             }
         </script>
     </head>
@@ -38,6 +42,11 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
                 <div class="info-tab">
                     <span class="status-pill badge badge-pill badge-secondary">Unknown</span>
                     <span class="status-text">Fetching latest data..</span>
+                </div>
+                <div class="seperator">|</div>
+                <div class="toggle-switch custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="toggle-updated" value="1" checked>
+                    <label class="custom-control-label" for="toggle-updated">Toggle updates</label>
                 </div>
                 <div class="seperator">|</div>
                 <div class="form-container">
@@ -109,16 +118,12 @@ $hash = App\WeatherStationService::get('weather_station_very_hash');
         <script src="<?=$root?>dist/js/latest.min.js"></script>
         <script>
             $(document).ready(function(e){
-                site.latest = {
-                    data: null,
-                    status: 0
-                };
-                
+                               
                 //Router
                 router();
 
                 //Interval
-                var interval = setInterval(cron, 3000);
+                setupCron();
             });
         </script>
     </body>

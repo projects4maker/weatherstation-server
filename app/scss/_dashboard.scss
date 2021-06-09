@@ -1,53 +1,4 @@
-nav#dashboard-head {
-    
-    position: fixed;
-    height: 60px;
-    width: 100%;
-    padding: 0 15px 0 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid $light;
-    
-
-    .headline-section {
-
-        display: flex;
-        align-items: center;
-        width: 40%;
-
-        .text {
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .img {
-            width: 36px;
-            height: 36px;
-            margin-right: 10px;
-        }
-    }
-
-    .user-section {
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .info-tab {
-
-            .status-pill {
-                @extend .badge-pill;
-                margin-right: 5px;
-            }
-        }
-
-        .seperator {
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-    }
-}
+@import 'dashboard/nav';
 
 main#dashboard {
     position: absolute;
@@ -154,6 +105,16 @@ main#dashboard {
                     }
                 }
 
+                .chart-row-5 {
+
+                    height: 20%;
+                }
+
+                .chart-row-4 {
+
+                    height: 25%;
+                }
+
                 .chart-row-3 {
 
                     height: 33.3333%;
@@ -188,38 +149,7 @@ main#dashboard {
     }
 }
 
-footer#status-bar {
-    position: fixed;
-    bottom: 0px;
-    border-top: 1px solid $light;
-    height: 60px;
-    width: 100%;
-    padding: 0 15px 0 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .value-container {
-        display: flex;
-        align-items: center;
-
-        .value {
-            padding: 5px;
-            margin: 0 10px 0 10px;
-            border: 2px solid $light;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 100px;
-            background-color: darken($green, 10%);
-        
-            .img {
-                margin-right: 5px;
-            }
-        }
-    }
-}
+@import 'dashboard/foot';
 
 .alert-area {
 

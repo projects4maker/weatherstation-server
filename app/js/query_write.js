@@ -5,46 +5,56 @@
  * 
  * @see projects4maker.com/weatherstation
  */
-function queryWrite(obj) {
+function queryWrite(obj, reset = 0) {
 
     let string = obj.toString();
 
-    if(string != "") {
+    if (string != "") {
 
         string = "!" + string;
     }
-    
+
     let hash = window.location.hash.split("!")[0];
 
-    if(hash == "#" || hash == "") {
+    if (hash == "#" || hash == "") {
 
         hash = "live";
     }
 
+    if (reset) {
+
+        string = "";
+    }
+
     window.location.hash = hash + string;
-    
+
 }
 
-function querySet(key, value="") {
+function querySet(key, value = "") {
 
     let string = queryGetString();
 
     let query = new URLSearchParams(string);
 
-    if(query.has(key)) {
+    if (query.has(key)) {
 
-        if(value == "") {
+        if (value == "") {
 
             query.delete(key);
         } else {
 
             query.set(key, value);
         }
-        
+
     } else {
 
         query.append(key, value);
     }
 
     queryWrite(query);
+}
+
+function queryReset() {
+
+    queryWrite({}, 1)
 }

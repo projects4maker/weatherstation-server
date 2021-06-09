@@ -87,12 +87,12 @@ function statusbar(datestring="", status=0) {
 
             let m = minutes_ago(now,date);
 
-            txt(bar, "Last database update " + m + " minute" + (m==1?"":"s") + " ago.");
+            txt(bar, "Last update " + m + " minute" + (m==1?"":"s") + " ago.");
             pill(bar, "Up to date", "success");
             break;
         case 2:
 
-            txt(bar, "Last database update " + Math.round(minutes_ago(now,date)/60) + " hours ago at " + case_day(now,date) + ", " + current_time(date) + ".");
+            txt(bar, "Last update " + Math.round(minutes_ago(now,date)/60) + " hours ago at " + case_day(now,date) + ", " + current_time(date) + ".");
             pill(bar, "Nearly outdated", "warning");
             break;
         case 3:
@@ -101,10 +101,10 @@ function statusbar(datestring="", status=0) {
 
             if(day == "today" || day == "yesterday") {
 
-                txt(bar, "Last database update " + day + " at " + current_time(date) + ".");
+                txt(bar, "Last update " + day + " at " + current_time(date) + ".");
             } else {
 
-                txt(bar, "Last database update " + date.toLocaleDateString() + " at " + current_time(date) + ".");
+                txt(bar, "Last update " + date.toLocaleDateString() + " at " + current_time(date) + ".");
             }
 
             pill(bar, "Outdated", "danger");

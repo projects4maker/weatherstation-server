@@ -16,3 +16,12 @@ function queryGetString() {
 
     return window.location.hash.split("!")[1] || "";
 }
+
+function queryReadValue(key) {
+
+    let string = queryGetString();
+
+    let params = new URLSearchParams(string);
+
+    return params.get(key)
+}

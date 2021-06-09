@@ -8,70 +8,79 @@
 function model(options) {
 
 
-    /**
-     * reset the current trigger 
-     */
-    site.trigger = null;
+  /**
+   * reset the current trigger 
+   */
+  site.trigger = null;
 
-    /**
-     * Define headline
-     */
-    $("#content .header .headline .text").html(options.title);
-    $("#content .header .headline small").html(options.description);
-    
-    /**
-     * Display charts
-     */
-    $("#content .viewable .chart-columne").html("");
+  /**
+   * Define headline
+   */
+  $("#content .header .headline .text").html(options.title);
+  $("#content .header .headline small").html(options.description);
 
-    var ch_counter = options.charts.length;
+  /**
+   * Display charts
+   */
+  $("#content .viewable .chart-columne").html("");
 
-    site.charts = {};
+  var ch_counter = options.charts.length;
 
-    site.charts[options.id] = [];
+  site.charts = {};
 
-    for(var i = 0; i < ch_counter; i++) {
+  site.charts[options.id] = [];
 
-      var id = 'chart-' + options.id;
+  for (var i = 0; i < ch_counter; i++) {
 
-        $("#content .viewable .chart-columne").append("\
+    var id = 'chart-' + options.id;
+
+    $("#content .viewable .chart-columne").append("\
             <div class=\"chart-container chart-row-" + ch_counter + "\">\
-              <canvas id=\"" + id + "-" +  i + "\">Your browser does not support the canvas element.</canvas> \
+              <canvas id=\"" + id + "-" + i + "\">Your browser does not support the canvas element.</canvas> \
             </div>");
 
-      site.charts[options.id][i] = new Chart(document.getElementById(id + "-" +  i).getContext('2d'), options.charts[i]);
+    site.charts[options.id][i] = new Chart(document.getElementById(id + "-" + i).getContext('2d'), options.charts[i]);
 
-    }
+  }
 
-     /**
-      * Display chart control
-      */
-     $("#content .viewable .chart-controls").html("");
+  /**
+   * Display chart control
+   */
+  $("#content .viewable .chart-controls").html("");
 
-     site.controls = [];
+  site.controls = [];
 
-     var ct_counter = options.controls.length;
+  var ct_counter = options.controls.length;
 
-     for(var i = 0; i < ct_counter; i++) {
+  for (var i = 0; i < ct_counter; i++) {
 
-        $("#content .viewable .chart-controls").append(options.controls[i].html);
+    $("#content .viewable .chart-controls").append(options.controls[i].html);
 
-        $("#content .viewable .chart-controls .control-item").last().attr("id", options.controls[i].id)
+    $("#content .viewable .chart-controls .control-item").last().attr("id", options.controls[i].id)
 
-        site.controls[i] = document.getElementById(options.controls[i].id).addEventListener(options.controls[i].event, options.controls[i].callable);
-     }
+    site.controls[i] = document.getElementById(options.controls[i].id).addEventListener(options.controls[i].event, options.controls[i].callable);
+  }
 
-    /**
-     * set the trigger 
-     */
-    switch(options.trigger.type) {
-      
-      case "cron":
+  $("#content .viewable .chart-controls").append("<button class=\"control-item btn btn-outline-primary btn-sm\" id=\"rst-df\">Restore default</button>");
 
-        site.trigger = setInterval(options.trigger.callable, options.trigger.time);
-        break;
-      case "controls":
+  document.getElementById("rst-df").addEventListener("click", function (e) {
 
-      //TODO
-    }
+    queryReset();
+    updateCurrentChart();
+  });
+
+  /**
+   * set the trigger 
+   */
+  switch (options.trigger.type) {
+
+    case "cron":
+
+      site.trigger = setInterval(options.trigger.callable, options.trigger.time);
+      break;
+    case "controls":
+
+    
+    //TODO
+  }
 }
